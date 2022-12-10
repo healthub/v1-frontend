@@ -1,25 +1,28 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+// import { useEffect, useState } from "react";
+import {
+  Button,
+  CssBaseline,
+  TextField,
+  Link,
+  Grid,
+  Box,
+  Typography,
+  Container,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+const SERVER_URL = "http://localhost:3026/users";
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    axios.post(SERVER_URL, { email, password });
   };
 
   const navigate = useNavigate();
@@ -41,12 +44,12 @@ export default function SignUp() {
           }}
         >
           <Typography component="h1" variant="h5" onClick={navigateToMain}>
-            Welcome to Fithub!
+            Welcome to Healthub
           </Typography>
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={onSubmitHandler}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
