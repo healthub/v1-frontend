@@ -1,4 +1,3 @@
-// import { useEffect, useState } from "react";
 import {
   Button,
   CssBaseline,
@@ -22,11 +21,16 @@ export default function SignUp() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const repassword = e.target.repassword.value;
     if (email === "") {
       alert("이메일을 입력해주세요!");
       return;
     } else if (password === "") {
       alert("비밀번호를 입력해주세요!");
+    } else if (repassword === "") {
+      alert("비밀번호 확인을 입력해주세요!");
+    } else if (password !== repassword) {
+      alert("비밀번호가 맞지 않습니다!");
     } else axios.post(SERVER_URL, { email, password });
   };
 
@@ -61,7 +65,6 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
                   label="이메일"
                   name="email"
                   autoComplete="email"
@@ -74,8 +77,16 @@ export default function SignUp() {
                   name="password"
                   label="비밀번호"
                   type="password"
-                  id="password"
                   autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="repassword"
+                  label="비밀번호 확인"
+                  type="password"
                 />
               </Grid>
             </Grid>
