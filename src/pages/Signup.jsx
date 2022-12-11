@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import swal from "sweetalert";
 
 const SERVER_URL = "http://localhost:3026/users";
 const theme = createTheme();
@@ -40,7 +41,7 @@ export default function SignUp() {
     } else if (password !== repassword) {
       alert("비밀번호가 일치하지 않습니다!");
     } else axios.post(SERVER_URL, { email, password });
-    alert("회원가입에 성공하였습니다!");
+    swal("회원가입에 성공하였습니다!", "로그인 페이지로 이동합니다.");
     navigateToLogin();
   };
 
