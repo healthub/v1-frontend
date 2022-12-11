@@ -22,11 +22,15 @@ export default function SignUp() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    axios.post(SERVER_URL, { email, password });
+    if (email === "") {
+      alert("이메일을 입력해주세요!");
+      return;
+    } else if (password === "") {
+      alert("비밀번호를 입력해주세요!");
+    } else axios.post(SERVER_URL, { email, password });
   };
 
   const navigate = useNavigate();
-
   const navigateToMain = () => {
     navigate("/");
   };
