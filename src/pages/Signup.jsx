@@ -17,6 +17,14 @@ const SERVER_URL = "http://localhost:3026/users";
 const theme = createTheme();
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  const navigateToMain = () => {
+    navigate("/");
+  };
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -30,13 +38,10 @@ export default function SignUp() {
     } else if (repassword === "") {
       alert("비밀번호 확인을 입력해주세요!");
     } else if (password !== repassword) {
-      alert("비밀번호가 맞지 않습니다!");
+      alert("비밀번호가 일치하지 않습니다!");
     } else axios.post(SERVER_URL, { email, password });
-  };
-
-  const navigate = useNavigate();
-  const navigateToMain = () => {
-    navigate("/");
+    alert("회원가입에 성공하였습니다!");
+    navigateToLogin();
   };
 
   return (
@@ -98,7 +103,7 @@ export default function SignUp() {
             >
               회원가입
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link href="/login" variant="body2">
                   계정이 이미 있다면 이 곳에서 로그인 하세요.
