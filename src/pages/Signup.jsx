@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
+import { useState } from "react";
 
 const SERVER_URL = "http://localhost:3026/users/register";
 const theme = createTheme();
@@ -26,12 +27,31 @@ export default function SignUp() {
     navigate("/login");
   };
 
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [repassword, setRePassword] = useState();
+
+  const handleChange_email = (e) => {
+    e.preventDefault();
+    setEmail(e.target.value);
+  };
+
+  const handleChange_password = (e) => {
+    e.preventDefault();
+    setPassword(e.target.value);
+  };
+
+  const handleChange_repassword = (e) => {
+    e.preventDefault();
+    setRePassword(e.target.value);
+  };
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const repassword = e.target.repassword.value;
-    let body = JSON.stringify({ email, password });
+    // const email = e.target.email.value;
+    // const password = e.target.password.value;
+    // const repassword = e.target.repassword.value;
+    // let body = JSON.stringify({ email, password });
     if (email === "") {
       alert("이메일을 입력해주세요!");
       return;
@@ -44,8 +64,15 @@ export default function SignUp() {
     } else if (password !== repassword) {
       alert("비밀번호가 일치하지 않습니다!");
       return;
-    } else axios.post(SERVER_URL, body);
-    console.log(body);
+    } else
+      axios
+        .post(SERVER_URL, { email, password })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     swal("회원가입에 성공하였습니다!", "로그인 페이지로 이동합니다.");
     navigateToLogin();
   };
@@ -79,6 +106,7 @@ export default function SignUp() {
                   label="이메일"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange_email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -89,6 +117,7 @@ export default function SignUp() {
                   label="비밀번호"
                   type="password"
                   autoComplete="new-password"
+                  onChange={handleChange_password}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -98,6 +127,7 @@ export default function SignUp() {
                   name="repassword"
                   label="비밀번호 확인"
                   type="password"
+                  onChange={handleChange_repassword}
                 />
               </Grid>
             </Grid>
