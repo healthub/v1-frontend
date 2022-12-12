@@ -18,7 +18,7 @@ import { useState } from "react";
 const SERVER_URL = "http://localhost:3026/users/register";
 const theme = createTheme();
 
-export default function SignupPage() {
+export default function Signup() {
   const navigate = useNavigate();
   const navigateToMain = () => {
     navigate("/");
