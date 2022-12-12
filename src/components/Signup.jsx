@@ -17,7 +17,7 @@ import swal from "sweetalert";
 const SERVER_URL = "http://localhost:3026/users/register";
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignupPage() {
   const navigate = useNavigate();
   const navigateToMain = () => {
     navigate("/");

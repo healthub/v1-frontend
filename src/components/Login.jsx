@@ -27,7 +27,7 @@ async function loginUser(credentials) {
   }).then((data) => data.json());
 }
 
-export default function Login() {
+export default function LoginPage() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -42,7 +42,7 @@ export default function Login() {
       sweetAlert("Success", response.message, "success", {
         buttons: false,
         timer: 2000,
-      }).then((value) => {
+      }).then(() => {
         localStorage.setItem("accessToken", response["accessToken"]);
         localStorage.setItem("user", JSON.stringifyf(response["user"]));
         window.location.href = "/mypage";
