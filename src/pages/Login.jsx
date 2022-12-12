@@ -9,21 +9,49 @@ import {
   CssBaseline,
   Grid,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import sweetAlert from "sweetalert";
 
+const SERVER_URL = "http://localhost:3026/users/login";
 const theme = createTheme();
 
+async function loginUser(credentials) {
+  return fetch(SERVER_URL, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data.json());
+}
+
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault(); // 버튼을 누르면 리프레쉬가 되는 것을 막아줌.
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await loginUser({
+      email,
+      password,
     });
+
+    if ("accessToken" in response) {
+      sweetAlert("Success", response.message, "success", {
+        buttons: false,
+        timer: 2000,
+      }).then((value) => {
+        localStorage.setItem("accessToken", response["accessToken"]);
+        localStorage.setItem("user", JSON.stringifyf(response["user"]));
+        window.location.href = "/mypage";
+      });
+    } else {
+      sweetAlert("Failed", response.message, "error");
+    }
   };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -53,6 +81,7 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -62,6 +91,7 @@ export default function Login() {
               type="password"
               name="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
