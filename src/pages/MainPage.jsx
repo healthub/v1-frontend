@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 
-export default function Main() {
+export default function MainPage() {
   return (
     <>
       <Header />

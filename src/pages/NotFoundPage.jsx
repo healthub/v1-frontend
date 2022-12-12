@@ -1,22 +1,14 @@
-import { Result, Button } from "antd";
+import React from "react";
 import { Link } from "react-router-dom";
-const NotFoundPage = () => {
+import "./pages.css";
+
+export default function NotFoundPage() {
   return (
-    <div>
-      {" "}
-      <Result
-        status="404"
-        title="404"
-        subTitle="Sorry, the page you visited does not exist."
-        extra={
-          <Button type="primary">
-            <Link to="/">Back home</Link>
-          </Button>
-        }
-      />
-      ,
+    <div id="NotFound" align="center">
+      <h3>잘못된 페이지입니다.</h3>
+      <Link to="/">
+        <button>메인으로 가기</button>
+      </Link>
     </div>
   );
-};
-
-export default NotFoundPage;
+}
