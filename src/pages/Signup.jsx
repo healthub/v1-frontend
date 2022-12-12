@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 
-const SERVER_URL = "http://localhost:3026/users";
+const SERVER_URL = "http://localhost:3026/users/register";
 const theme = createTheme();
 
 export default function SignUp() {
@@ -31,16 +31,21 @@ export default function SignUp() {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const repassword = e.target.repassword.value;
+    let body = JSON.stringify({ email, password });
     if (email === "") {
       alert("이메일을 입력해주세요!");
       return;
     } else if (password === "") {
       alert("비밀번호를 입력해주세요!");
+      return;
     } else if (repassword === "") {
       alert("비밀번호 확인을 입력해주세요!");
+      return;
     } else if (password !== repassword) {
       alert("비밀번호가 일치하지 않습니다!");
-    } else axios.post(SERVER_URL, { email, password });
+      return;
+    } else axios.post(SERVER_URL, body);
+    console.log(body);
     swal("회원가입에 성공하였습니다!", "로그인 페이지로 이동합니다.");
     navigateToLogin();
   };
