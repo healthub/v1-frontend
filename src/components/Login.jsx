@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 
@@ -19,6 +19,11 @@ const SERVER_URL = "http://localhost:3026/auth/login";
 const theme = createTheme();
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const navigateToMypage = () => {
+    navigate("/mypage");
+  };
+
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -32,6 +37,7 @@ export default function LoginPage() {
         localStorage.setItem("accessToken", response.data.accessToken);
         console.log(response.data);
         swal("로그인에 성공하였습니다!", "마이페이지로 이동합니다.");
+        navigateToMypage();
       })
       .catch((error) => {
         console.log(error);
