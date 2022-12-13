@@ -12,44 +12,31 @@ import {
 import React, { useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import sweetAlert from "sweetalert";
+import swal from "sweetalert";
+import axios from "axios";
 
 const SERVER_URL = "http://localhost:3026/auth/login";
 const theme = createTheme();
 
-async function loginUser(credentials) {
-  return fetch(SERVER_URL, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
-}
-
 export default function LoginPage() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const response = await loginUser({
-      email,
-      password,
-    });
-
-    if ("accessToken" in response) {
-      sweetAlert("Success", response.message, "success", {
-        buttons: false,
-        timer: 2000,
-      }).then(() => {
-        localStorage.setItem("accessToken", response["accessToken"]);
-        localStorage.setItem("user", JSON.stringify(response["user"]));
-        window.location.href = "/mypage";
+    axios
+      .post(SERVER_URL, { email: values.email, password: values.password })
+      .then((response) => {
+        localStorage.setItem("accessToken", response.data.accessToken);
+        console.log(response.data);
+        swal("로그인에 성공하였습니다!", "마이페이지로 이동합니다.");
+      })
+      .catch((error) => {
+        console.log(error);
+        swal("로그인에 실패하였습니다!", "아이디와 비밀번호를 확인해주세요.");
       });
-    } else {
-      sweetAlert("Failed", response.message, "error");
-    }
   };
 
   return (
@@ -81,7 +68,7 @@ export default function LoginPage() {
               name="email"
               autoComplete="email"
               autoFocus
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setValues({ ...values, email: e.target.value })}
             />
             <TextField
               margin="normal"
@@ -91,7 +78,9 @@ export default function LoginPage() {
               type="password"
               name="password"
               autoComplete="current-password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setValues({ ...values, password: e.target.value })
+              }
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
