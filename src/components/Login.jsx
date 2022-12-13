@@ -44,7 +44,7 @@ export default function LoginPage() {
         timer: 2000,
       }).then(() => {
         localStorage.setItem("accessToken", response["accessToken"]);
-        localStorage.setItem("user", JSON.stringifyf(response["user"]));
+        localStorage.setItem("user", JSON.stringify(response["user"]));
         window.location.href = "/mypage";
       });
     } else {

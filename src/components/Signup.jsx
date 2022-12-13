@@ -15,7 +15,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useState } from "react";
 
-const SERVER_URL = "http://localhost:3026/users/register";
+const SERVER_URL = "http://localhost:3026/auth/register";
 const theme = createTheme();
 
 export default function Signup() {
@@ -69,12 +69,13 @@ export default function Signup() {
         .post(SERVER_URL, { email, password })
         .then((response) => {
           console.log(response.data);
+          swal("회원가입에 성공하였습니다!", "로그인 페이지로 이동합니다.");
+          navigateToLogin();
         })
         .catch((error) => {
           console.log(error);
+          swal("회원가입에 실패하였습니다", "다시 시도해주세요.");
         });
-    swal("회원가입에 성공하였습니다!", "로그인 페이지로 이동합니다.");
-    navigateToLogin();
   };
 
   return (
