@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import sweetAlert from "sweetalert";
 
-const SERVER_URL = "http://localhost:3026/users/login";
+const SERVER_URL = "http://localhost:3026/auth/login";
 const theme = createTheme();
 
 async function loginUser(credentials) {
