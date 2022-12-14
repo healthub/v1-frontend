@@ -1,23 +1,25 @@
 import React from "react";
 import Button from "@mui/material/Button";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 export default function Header() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const navigateToMain = () => {
+    navigate("/");
+  };
 
-  // const navigateToLogin = () => {
-  //   navigate("/login");
-  // };
-
-  // const navigateToSignup = () => {
-  //   navigate("/signup");
-  // };
+  const handleLogout = () => {
+    localStorage.clear();
+    swal("로그아웃 되었습니다.");
+    navigateToMain();
+  };
   return (
     <header className="header">
       <strong>Fithub</strong>
       <ul>
         <li>
-          <Button variant="outlined" size="medium">
+          <Button onClick={handleLogout} variant="outlined" size="medium">
             로그아웃
           </Button>
         </li>
