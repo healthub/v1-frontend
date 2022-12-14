@@ -5,16 +5,31 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignupPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import MyPage from "./pages/MyPage";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
+  // const access = localStorage.getItem("accessToken");
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route Path="/mypage" element={<MyPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route
+          path="/mypage"
+          element={
+            <PrivateRoute>
+              <MyPage />
+            </PrivateRoute>
+          }
+        />
+        {/* <Route
+          path="/mypage"
+          element={
+            <PrivateRoute authenticated={access} component={<MyPage />} />
+          }
+        /> */}
       </Routes>
     </BrowserRouter>
   );
