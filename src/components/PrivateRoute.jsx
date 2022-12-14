@@ -16,7 +16,7 @@ import { Navigate } from "react-router-dom";
 import IsLogin from "./IsLogin";
 
 const PrivateRoute = ({ children }) => {
-  return IsLogin ? <Navigate to="/login" /> : children;
+  return !IsLogin ? <Navigate to="/login" /> : children;
 };
 
 export default PrivateRoute;
