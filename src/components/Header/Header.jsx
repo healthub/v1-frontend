@@ -12,10 +12,19 @@ export default function Header() {
   const navigateToSignup = () => {
     navigate("/signup");
   };
+
+  const navigateToMypage = () => {
+    navigate("mypage");
+  };
   return (
     <header className="header">
       <strong>Fithub</strong>
       <ul>
+        <li>
+          <Button variant="outlined" size="medium" onClick={navigateToMypage}>
+            마이페이지
+          </Button>
+        </li>
         <li>
           <Button variant="outlined" size="medium" onClick={navigateToLogin}>
             로그인
