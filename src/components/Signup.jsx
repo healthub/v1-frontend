@@ -48,10 +48,6 @@ export default function Signup() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    // const email = e.target.email.value;
-    // const password = e.target.password.value;
-    // const repassword = e.target.repassword.value;
-    // let body = JSON.stringify({ email, password });
     if (email === "") {
       alert("이메일을 입력해주세요!");
       return;

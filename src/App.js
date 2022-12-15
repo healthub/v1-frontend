@@ -8,7 +8,6 @@ import MyPage from "./pages/MyPage";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
-  // const access = localStorage.getItem("accessToken");
   return (
     <BrowserRouter>
       <Routes>
