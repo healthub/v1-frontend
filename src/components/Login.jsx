@@ -58,7 +58,8 @@ export default function LoginPage() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Sign in
+            하루의 운동 기록할 땐?
+            <br /> Fithub
           </Typography>
           <Box
             component="form"
