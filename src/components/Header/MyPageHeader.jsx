@@ -16,7 +16,13 @@ export default function Header() {
   };
   return (
     <header className="header">
-      <strong>Fithub</strong>
+      <img
+        className="FithubLogo"
+        alt="Fithub"
+        src="img/Fithub-logo.png"
+        style={{ width: "80px" }}
+        onClick={navigateToMain}
+      />
       <ul>
         <li>
           <Button onClick={handleLogout} variant="outlined" size="medium">
