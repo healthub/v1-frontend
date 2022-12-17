@@ -4,7 +4,7 @@ import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignupPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import MyPage from "./pages/MyPage";
+import MyPage from "./pages/Mypage";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
