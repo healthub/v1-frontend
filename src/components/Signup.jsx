@@ -87,7 +87,8 @@ export default function Signup() {
           }}
         >
           <Typography component="h1" variant="h5" onClick={navigateToMain}>
-            Welcome to Healthub
+            하루의 운동 기록할 땐?
+            <br /> Fithub
           </Typography>
           <Box
             component="form"

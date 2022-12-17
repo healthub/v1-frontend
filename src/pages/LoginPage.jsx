@@ -1,10 +1,10 @@
 import Login from "../components/Login";
-import LoginHeader from "../components/Header/LoginHeader";
+import LogoHeader from "../components/Header/LogoHeader";
 
 export default function LoginPage() {
   return (
     <>
-      <LoginHeader />
+      <LogoHeader />
       <Login />
     </>
   );
