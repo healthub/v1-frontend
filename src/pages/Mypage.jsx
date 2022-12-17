@@ -1,9 +1,10 @@
 import MyPageHeader from "../components/Header/MyPageHeader";
+import ProfilePage from "./ProfilePage";
 function MyPage() {
   return (
     <div>
       <MyPageHeader />
-      <h1>마이페이지</h1>
+      <ProfilePage />
     </div>
   );
 }
