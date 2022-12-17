@@ -1,9 +1,14 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import "./Header.css";
 
 export default function Header() {
   const navigate = useNavigate();
+
+  const navigateToMain = () => {
+    navigate("/");
+  };
 
   const navigateToLogin = () => {
     navigate("/login");
@@ -14,11 +19,17 @@ export default function Header() {
   };
 
   const navigateToMypage = () => {
-    navigate("mypage");
+    navigate("/mypage");
   };
   return (
     <header className="header">
-      <strong>Fithub</strong>
+      <img
+        className="FithubLogo"
+        alt="Fithub"
+        src="img/Fithub-logo.png"
+        style={{ width: "80px" }}
+        onClick={navigateToMain}
+      />
       <ul>
         <li>
           <Button variant="outlined" size="medium" onClick={navigateToMypage}>
