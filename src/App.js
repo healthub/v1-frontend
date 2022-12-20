@@ -8,6 +8,7 @@ import MyPage from "./pages/Mypage";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/ProfilePage";
 import Edit from "./pages/EditPage";
+import BoardWrite from "./pages/BoardWritePage";
 
 export default function App() {
   return (
@@ -38,6 +39,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <MyPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/board-write"
+          element={
+            <PrivateRoute>
+              <BoardWrite />
             </PrivateRoute>
           }
         />

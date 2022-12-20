@@ -3,7 +3,8 @@ import { AiOutlineInbox } from "react-icons/ai";
 import { TbBook, TbBook2 } from "react-icons/tb";
 import { FiBox, FiStar } from "react-icons/fi";
 import Left from "../components/Left";
-import Overview from "../components/Overview";
+import Board from "../components/Board";
+import Right from "../components/Right";
 import "../styles/profile.css";
 
 function ProfilePage() {
@@ -12,23 +13,23 @@ function ProfilePage() {
       <nav>
         <div className="profileIcon">
           <TbBook />
-          <h2>Overview </h2>
+          <h2>운동 기록하기 </h2>
         </div>
         <div className="profileIcon">
           <TbBook2 />
-          <h2>Repositories</h2>
+          <h2>운동 폴더</h2>
         </div>
         <div className="profileIcon">
           <AiOutlineInbox />
-          <h2>Projects</h2>
+          <h2>함께 운동하기</h2>
         </div>
         <div className="profileIcon">
           <FiBox />
-          <h2>Packages</h2>
+          <h2>식단관리</h2>
         </div>
         <div className="profileIcon">
           <FiStar />
-          <h2>Stars</h2>
+          <h2>구독</h2>
         </div>
       </nav>
 
@@ -36,7 +37,8 @@ function ProfilePage() {
 
       <div className="sectionCenter">
         <Left />
-        <Overview />
+        <Board />
+        <Right />
       </div>
     </div>
   );

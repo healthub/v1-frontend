@@ -14,14 +14,12 @@ import swal from "sweetalert";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SERVER_URL = "http://localhost:3026/user-profile";
+const SERVER_URL = "http://localhost:3026/boards";
 const theme = createTheme();
 
 export default function Signup() {
-  const [userName, setUsername] = useState("");
-  const [bio, setBio] = useState("");
-  const [mainClub, setMainclub] = useState("");
-  const [instaAccount, setInstagram] = useState("");
+  const [title, setTitle] = useState("");
+  const [contents, setContents] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,36 +27,26 @@ export default function Signup() {
     navigate("/mypage");
   };
 
-  const handleChange_username = (e) => {
+  const handleChange_title = (e) => {
     e.preventDefault();
-    setUsername(e.target.value);
+    setTitle(e.target.value);
   };
 
-  const handleChange_bio = (e) => {
+  const handleChange_contents = (e) => {
     e.preventDefault();
-    setBio(e.target.value);
-  };
-
-  const handleChange_mainclub = (e) => {
-    e.preventDefault();
-    setMainclub(e.target.value);
-  };
-
-  const handleChange_instagram = (e) => {
-    e.preventDefault();
-    setInstagram(e.target.value);
+    setContents(e.target.value);
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (userName === "") {
-      alert("닉네임을 설정해주세요.");
+    if (title === "") {
+      alert("제목을 입력해주세요!");
       return;
     } else
       axios
         .post(
           SERVER_URL,
-          { userName, bio, mainClub, instaAccount },
+          { title, contents },
           {
             headers: {
               "Content-Type": "application/json",
@@ -68,12 +56,12 @@ export default function Signup() {
         )
         .then((response) => {
           console.log(response.data);
-          swal("프로필 수정을 완료하였습니다.");
+          swal("게시글 작성을 완료하였습니다.");
           navigateToMypage();
         })
         .catch((error) => {
           console.log(error);
-          swal("프로필 수정에 실패하였습니다.");
+          swal("게시글 작성에 실패하였습니다.");
         });
   };
 
@@ -90,8 +78,7 @@ export default function Signup() {
           }}
         >
           <Typography component="h1" variant="h5">
-            하루하루 운동을 기록할 땐?
-            <br /> Fithub
+            운동 기록하기
           </Typography>
           <Box
             component="form"
@@ -104,41 +91,21 @@ export default function Signup() {
                 <TextField
                   required
                   fullWidth
-                  label="username"
-                  name="username"
-                  autoComplete="username"
-                  onChange={handleChange_username}
+                  label="오늘의 운동 부위"
+                  name="title"
+                  autoComplete="title"
+                  onChange={handleChange_title}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="bio"
-                  label="bio"
-                  type="bio"
-                  autoComplete="bio"
-                  onChange={handleChange_bio}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="mainclub"
-                  label="mainclub"
-                  type="mainclub"
-                  onChange={handleChange_mainclub}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="instaAccount"
-                  label="instagram account"
-                  type="instaAccount"
-                  onChange={handleChange_instagram}
+                  name="contents"
+                  label="운동 일지"
+                  type="contents"
+                  autoComplete="contents"
+                  onChange={handleChange_contents}
                 />
               </Grid>
             </Grid>
@@ -148,7 +115,7 @@ export default function Signup() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              프로필 생성하기
+              운동 기록하기
             </Button>
           </Box>
         </Box>

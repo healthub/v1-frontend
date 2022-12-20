@@ -27,24 +27,24 @@ function Left() {
       <div className="leftDetails">
         <form className="profileForm">
           <div>
-            <label for="username">username</label>
-            <p>{profiles.userName}</p>
+            <span>username: </span>
+            <span>{profiles.userName}</span>
           </div>
           <div>
-            <label for="bio">bio</label>
-            <p>{profiles.bio}</p>
+            <span>bio: </span>
+            <span>{profiles.bio}</span>
           </div>
           <div>
-            <label for="mainclub">mainclub</label>
-            <p>{profiles.mainClub}</p>
+            <span>mainclub: </span>
+            <span>{profiles.mainClub}</span>
           </div>
           <div>
-            <label for="insta">insta</label>
-            <p>{profiles.instaAccount}</p>
+            <span>insta: </span>
+            <span>{profiles.instaAccount}</span>
           </div>
 
           <Link to="/edit/:{id}">
-            <button>프로필 생성하기</button>
+            <button>프로필 관리하기</button>
           </Link>
         </form>
       </div>

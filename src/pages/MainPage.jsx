@@ -9,10 +9,7 @@ export default function MainPage() {
     <>
       <NavbarNoAuth />
       <main className="main">
-        <div>
-          <MainLeft />
-          <MainRight />
-        </div>
+        <div></div>
       </main>
     </>
   );
