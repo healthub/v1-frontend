@@ -2,7 +2,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  Link,
   Grid,
   Box,
   Typography,
@@ -13,7 +12,7 @@ import {
 import axios from "axios";
 import swal from "sweetalert";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:3026/user-profile";
 const theme = createTheme();
@@ -24,8 +23,11 @@ export default function Signup() {
   const [mainClub, setMainclub] = useState();
   const [instaAccount, setInstagram] = useState();
 
-  const params = useParams();
-  const editId = params.id;
+  const navigate = useNavigate();
+
+  const navigateToMypage = () => {
+    navigate("/mypage");
+  };
 
   const handleChange_username = (e) => {
     e.preventDefault();
@@ -60,15 +62,14 @@ export default function Signup() {
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `bearer ${JSON.stringify(
-                localStorage.getItem("accessToken")
-              )}`,
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
           }
         )
         .then((response) => {
           console.log(response.data);
           swal("프로필 수정을 완료하였습니다.");
+          navigateToMypage();
         })
         .catch((error) => {
           console.log(error);
@@ -98,7 +99,7 @@ export default function Signup() {
             onSubmit={onSubmitHandler}
             sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
+            <Grid container spacing={4}>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -147,15 +148,8 @@ export default function Signup() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              프로필 수정
+              프로필 생성하기
             </Button>
-            <Grid container justifyContent="center">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  계정이 있다면 이 곳에서 로그인 하세요.
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
