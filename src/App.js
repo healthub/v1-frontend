@@ -4,8 +4,10 @@ import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignupPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import MyPage from "./pages/MyPage";
+import MyPage from "./pages/Mypage";
 import PrivateRoute from "./components/PrivateRoute";
+import Profile from "./pages/ProfilePage";
+import Edit from "./pages/EditPage";
 
 export default function App() {
   return (
@@ -16,6 +18,22 @@ export default function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route
+          path="/edit/:id"
+          element={
+            <PrivateRoute>
+              <Edit />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/mypage"
           element={
             <PrivateRoute>
@@ -23,12 +41,6 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
-          path="/mypage"
-          element={
-            <PrivateRoute authenticated={access} component={<MyPage />} />
-          }
-        /> */}
       </Routes>
     </BrowserRouter>
   );

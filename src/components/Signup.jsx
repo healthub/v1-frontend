@@ -20,9 +20,7 @@ const theme = createTheme();
 
 export default function Signup() {
   const navigate = useNavigate();
-  const navigateToMain = () => {
-    navigate("/");
-  };
+
   const navigateToLogin = () => {
     navigate("/login");
   };
@@ -86,8 +84,8 @@ export default function Signup() {
             alignItems: "center",
           }}
         >
-          <Typography component="h1" variant="h5" onClick={navigateToMain}>
-            하루의 운동 기록할 땐?
+          <Typography component="h1" variant="h5">
+            하루하루 운동을 기록할 땐?
             <br /> Fithub
           </Typography>
           <Box
@@ -140,7 +138,7 @@ export default function Signup() {
             <Grid container justifyContent="center">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  계정이 이미 있다면 이 곳에서 로그인 하세요.
+                  계정이 있다면 이 곳에서 로그인 하세요.
                 </Link>
               </Grid>
             </Grid>
