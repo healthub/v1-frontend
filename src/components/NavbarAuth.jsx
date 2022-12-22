@@ -31,15 +31,15 @@ function Navbar() {
           onClick={navigateToMypage}
         />
         <div>
-          <input type="text" placeholder="Search or jump to" />
+          <input type="text" placeholder="다른 핏허브 유저 검색하기" />
         </div>
       </div>
       {/* Center */}
       <div className="navCenter">
-        <h2>Pulls</h2>
-        <h2>Issues</h2>
-        <h2>Marketplace</h2>
-        <h2>Explore</h2>
+        <h2>내 운동 관리하기</h2>
+        <h2>팔로우</h2>
+        <h2>팔로잉</h2>
+        <h2>내일 목표</h2>
         <MdLogout className="logout" onClick={handleLogout} />
       </div>
     </nav>

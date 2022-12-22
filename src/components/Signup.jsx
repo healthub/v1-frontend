@@ -47,16 +47,16 @@ export default function Signup() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     if (email === "") {
-      alert("이메일을 입력해주세요!");
+      swal("이메일을 입력해주세요!");
       return;
     } else if (password === "") {
-      alert("비밀번호를 입력해주세요!");
+      swal("비밀번호를 입력해주세요!");
       return;
     } else if (repassword === "") {
-      alert("비밀번호 확인을 입력해주세요!");
+      swal("비밀번호 확인을 입력해주세요!");
       return;
     } else if (password !== repassword) {
-      alert("비밀번호가 일치하지 않습니다!");
+      swal("비밀번호가 일치하지 않습니다!");
       return;
     } else
       axios
